@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
   dataList: any = [];
   clickedRowIndex: number;
+  filterTerm: string = '';
 
   ngOnInit(): void {
     this.http
@@ -23,10 +24,12 @@ export class AppComponent implements OnInit {
   }
 
   onEditRow(index) {
+    this.filterTerm = '';
     this.clickedRowIndex = index;
   }
 
   onDeleteRow(index) {
+    this.filterTerm = '';
     this.dataList.forEach((value, key) => {
       if (index == key) {
         console.log(index, key);
