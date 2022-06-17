@@ -1,4 +1,40 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<p>Start editing to see some magic happen :)</p>
+
+<div class="col-sm-12 col-lg-12 col-xl-12">
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dataLists of dataList; index as i">
+          <td>
+            {{ dataLists.id }}
+          </td>
+          <td *ngIf="i != clickedRowIndex">
+            {{ dataLists.title }}
+          </td>
+          <td *ngIf="i == clickedRowIndex">
+            <input
+              type="text"
+              style="width:100%;"
+              [(ngModel)]="dataLists.title"
+            />
+          </td>
+          <td>
+            <button type="button" (click)="onEditRow(i)">Edit</button>
+            <button type="button" (click)="onDeleteRow(i)">Delete</button>
+          </td>
+        </tr>
+        <tr class="NoDataAvailable" *ngIf="!dataList.length">
+          <td colspan="3" class="text-center">No Data Found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
